@@ -1,6 +1,6 @@
 // interfaces/controllers/productos.controller.ts
 import { Controller, Get } from '@nestjs/common';
-import { GetProductosUseCase } from '../../application/use-cases/get-productos-usecase';
+import { GetProductosUseCase } from '../../application/use-cases/obtener-productos-usecase';
 import { ProductoDynamoAdapter } from '../../adapters/outbound/producto-dynamo.adapter';
 
 @Controller('productos')
