@@ -10,6 +10,7 @@ provider:
 functions:
   api:
     handler: dist/lambda.handler
+    timeout: 30
     events:
       - http:
           path: /{proxy+}
