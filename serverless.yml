@@ -23,6 +23,12 @@ functions:
     timeout: 29
     events:
       - http:
+          path: docs-json
+          method: get
+      - http:
+          path: api
+          method: get
+      - http:
           path: /{proxy+}
           method: any
           cors: true

@@ -26,3 +26,7 @@
 | `total`            | number  | Total a pagar (producto + tarifas)                          |
 | `fechaCreacion`    | string  | Fecha y hora de creación                                    |
 | `fechaActualizacion`| string | Fecha y hora de la última actualización                     |
+
+
+## Swagger Api
+https://b67wpwmrik.execute-api.us-east-1.amazonaws.com/dev/api
