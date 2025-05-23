@@ -17,6 +17,17 @@ export class CrearCompraDto {
     @IsNotEmpty()
     nombreCliente: string;
 
+    @ApiProperty({ example: '328199434', description: 'Telefono del comprador' })
+    @IsString()
+    @IsNotEmpty()
+    telefono: string;
+
+
+    @ApiProperty({ example: 'jesus@gmail.com', description: 'Email del comprador' })
+    @IsString()
+    @IsNotEmpty()
+    email: string;
+
     @ApiProperty({ example: 'Calle prueba', description: 'Direccion del comprador' })
     @IsString()
     @IsNotEmpty()
