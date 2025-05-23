@@ -4,26 +4,10 @@ import { CompraDynamoAdapter } from '../../adapters/outbound/compra-dynamo.adapt
 import { Result } from '../../shared/result';
 import { ActualizarTransaccionUseCase } from 'src/application/use-cases/actualizar-transaccion.usecase';
 import { ProductoDynamoAdapter } from 'src/adapters/outbound/producto-dynamo.adapter';
-import { CompraEstado } from 'src/domain/models/compra-status.enum';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { CompraDto } from '../dtos/crear-compra.dto';
-import { CompraActualizarDto } from '../dtos/actualizar-compra.dto';
+import { CrearCompraDto } from '../dtos/crear-compra.dto';
+import { ActualizarCompraDto } from '../dtos/actualizar-compra.dto';
 
-interface CrearCompraDto {
-    productoId: string;
-    cantidad: number;
-    nombreCliente: string;
-    direccion: string;
-    total: number;
-}
-
-interface ActualizarCompraDto {
-    estado: CompraEstado;
-    nombreCliente?: string;
-    direccion?: string;
-    total?: number;
-    cantidad?: number;
-}
 
 @ApiTags('Compras')
 @Controller('compra')
@@ -35,7 +19,7 @@ export class CompraController {
     );
 
     @Post()
-    @ApiBody({ type: CompraDto })
+    @ApiBody({ type: CrearCompraDto })
     @ApiOperation({ summary: 'Crear una nueva compra' })
     async crearCompra(@Body() dto: CrearCompraDto) {
         const result: Result<any, Error> = await this.crearTransaccionUseCase.execute(dto);
@@ -47,7 +31,7 @@ export class CompraController {
     }
 
     @Patch(':id')
-    @ApiBody({ type: CompraActualizarDto })
+    @ApiBody({ type: ActualizarCompraDto })
     @ApiOperation({ summary: 'Actualizar una compra' })
     async actualizarCompra(@Param('id') id: string, @Body() dto: ActualizarCompraDto) {
         const result: Result<any, Error> = await this.actualizarTransaccionUseCase.execute({ id, ...dto });
