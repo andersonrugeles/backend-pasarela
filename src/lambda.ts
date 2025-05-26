@@ -11,8 +11,21 @@ let cachedServer;
 async function bootstrapServer() {
   if (!cachedServer) {
     const expressApp = express();
+
+    expressApp.use((req: any, res: any, next: any) => {
+      res.header('Access-Control-Allow-Origin', 'https://d1d96urffogc3d.cloudfront.net');
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+      res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+      if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+      }
+      next();
+    });
+
+
     const adapter = new ExpressAdapter(expressApp);
     const app = await NestFactory.create(AppModule, adapter);
+
 
     const config = new DocumentBuilder()
       .setTitle('API Tienda')
