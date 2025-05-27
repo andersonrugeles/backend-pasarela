@@ -1,6 +1,6 @@
 import { ClienteRepository } from '../../domain/ports/cliente.repository';
 import { Cliente } from '../../domain/models/cliente.model';
-import { err, ok, Result } from 'src/shared/result';
+import { err, ok, Result } from '../../shared/result';
 
 interface Input {
     nombre: string;

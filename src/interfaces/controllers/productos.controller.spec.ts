@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductosController } from './productos.controller';
-import { GetProductosUseCase } from '../../application/use-cases/obtener-productos-usecase';
+import { GetProductosUseCase } from '../../application/use-cases/obtener-productos.usecase';
 
 const mockGetProductosUseCase = {
   execute: jest.fn(),

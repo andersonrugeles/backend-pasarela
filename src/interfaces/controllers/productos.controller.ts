@@ -1,5 +1,5 @@
 import { Controller, Get, Injectable } from '@nestjs/common';
-import { GetProductosUseCase } from '../../application/use-cases/obtener-productos-usecase';
+import { GetProductosUseCase } from '../../application/use-cases/obtener-productos.usecase';
 import { ProductoDynamoAdapter } from '../../adapters/outbound/producto-dynamo.adapter';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ProductoDto } from '../dtos/producto.dto';
