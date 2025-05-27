@@ -3,7 +3,9 @@ import { Producto } from '../../domain/models/producto.model';
 import { DynamoDBClient, GetItemCommand, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ProductoDynamoAdapter implements ProductoRepository {
   private client = new DynamoDBClient({ region: 'us-east-1' });
   private docClient = DynamoDBDocumentClient.from(this.client);

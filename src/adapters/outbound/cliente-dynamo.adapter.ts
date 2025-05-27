@@ -7,8 +7,9 @@ import {
   ScanCommand
 } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
-
+@Injectable()
 export class ClienteDynamoAdapter implements ClienteRepository {
   private client = new DynamoDBClient({});
   private tableName = 'clientes';

@@ -2,7 +2,8 @@ import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { marshall } from '@aws-sdk/util-dynamodb';
 import { Entrega } from '../../domain/models/entrega.model';
 import { EntregaRepository } from '../../domain/ports/entrega.repository';
-
+import { Injectable } from '@nestjs/common';
+@Injectable()
 export class EntregaDynamoAdapter implements EntregaRepository {
   private readonly tableName = 'entregas';
   private readonly client = new DynamoDBClient({});

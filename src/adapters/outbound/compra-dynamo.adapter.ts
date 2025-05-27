@@ -2,8 +2,9 @@ import { Compra } from '../../domain/models/compra-status.enum';
 import { CompraRepository } from '../../domain/ports/compra.repository';
 import { DynamoDBClient, PutItemCommand, GetItemCommand, UpdateItemCommand, ReturnValue } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { Injectable } from '@nestjs/common';
 import { v4 as uuidv4 } from 'uuid';
-
+@Injectable()
 export class CompraDynamoAdapter implements CompraRepository {
   private tableName = 'compras';
   private client = new DynamoDBClient({});

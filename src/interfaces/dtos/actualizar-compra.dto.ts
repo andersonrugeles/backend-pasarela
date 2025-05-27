@@ -1,6 +1,6 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsInt, IsOptional, IsString, Min } from 'class-validator';
-import { CompraEstado } from 'src/domain/models/compra-status.enum';
+import { CompraEstado } from '../../domain/models/compra-status.enum';
 
 export class ActualizarCompraDto {
   @ApiPropertyOptional({ enum: CompraEstado })

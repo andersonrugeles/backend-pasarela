@@ -2,9 +2,9 @@ import { CompraRepository } from '../../domain/ports/compra.repository';
 import { ProductoRepository } from '../../domain/ports/productos.repository';
 import { Compra, CompraEstado } from '../../domain/models/compra-status.enum';
 import { Result, ok, err } from '../../shared/result';
-import { EntregaRepository } from 'src/domain/ports/entrega.repository';
+import { EntregaRepository } from '../../../src/domain/ports/entrega.repository';
 import { randomUUID } from 'crypto';
-import { Entrega } from 'src/domain/models/entrega.model';
+import { Entrega } from '../../../src/domain/models/entrega.model';
 
 interface ActualizarTransaccionDTO {
   id: string;

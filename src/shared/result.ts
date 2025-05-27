@@ -1,4 +1,3 @@
-// shared/result.ts
 export type Result<T, E> = Success<T> | Failure<E>;
 
 export class Success<T> {

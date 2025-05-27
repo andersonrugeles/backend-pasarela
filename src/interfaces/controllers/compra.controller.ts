@@ -1,26 +1,24 @@
-import { Controller, Post, Body, HttpException, HttpStatus, Patch, Param } from '@nestjs/common';
+import { Controller, Post, Body, HttpException, HttpStatus, Patch, Param, Injectable } from '@nestjs/common';
 import { CrearTransaccionUseCase } from '../../application/use-cases/completar-transaccion.usecase';
-import { CompraDynamoAdapter } from '../../adapters/outbound/compra-dynamo.adapter';
 import { Result } from '../../shared/result';
-import { ActualizarTransaccionUseCase } from 'src/application/use-cases/actualizar-transaccion.usecase';
-import { ProductoDynamoAdapter } from 'src/adapters/outbound/producto-dynamo.adapter';
+import { ActualizarTransaccionUseCase } from '../../../src/application/use-cases/actualizar-transaccion.usecase';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CrearCompraDto } from '../dtos/crear-compra.dto';
 import { ActualizarCompraDto } from '../dtos/actualizar-compra.dto';
-import { CrearClienteUseCase } from 'src/application/use-cases/crear-cliente.usecase';
-import { ClienteDynamoAdapter } from 'src/adapters/outbound/cliente-dynamo.adapter';
-import { EntregaDynamoAdapter } from 'src/adapters/outbound/entrega-dynamo.adapter';
 
 
 @ApiTags('Compras')
 @Controller('compra')
+@Injectable()
 export class CompraController {
-    private crearTransaccionUseCase = new CrearTransaccionUseCase(new CompraDynamoAdapter(), new ProductoDynamoAdapter(), new CrearClienteUseCase(new ClienteDynamoAdapter));
-    private actualizarTransaccionUseCase = new ActualizarTransaccionUseCase(
-        new CompraDynamoAdapter(),
-        new ProductoDynamoAdapter(),
-        new EntregaDynamoAdapter()
-    );
+
+    constructor(
+        private readonly crearTransaccionUseCase: CrearTransaccionUseCase,
+        private readonly actualizarTransaccionUseCase: ActualizarTransaccionUseCase
+    ) {
+
+    }
+
 
     @Post()
     @ApiBody({ type: CrearCompraDto })
