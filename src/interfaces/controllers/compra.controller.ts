@@ -1,10 +1,10 @@
 import { Controller, Post, Body, HttpException, HttpStatus, Patch, Param, Injectable } from '@nestjs/common';
 import { CrearTransaccionUseCase } from '../../application/use-cases/completar-transaccion.usecase';
 import { Result } from '../../shared/result';
-import { ActualizarTransaccionUseCase } from '../../../src/application/use-cases/actualizar-transaccion.usecase';
 import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { CrearCompraDto } from '../dtos/crear-compra.dto';
 import { ActualizarCompraDto } from '../dtos/actualizar-compra.dto';
+import { ActualizarTransaccionUseCase } from 'src/application/use-cases/actualizar-transaccion.usecase';
 
 
 @ApiTags('Compras')

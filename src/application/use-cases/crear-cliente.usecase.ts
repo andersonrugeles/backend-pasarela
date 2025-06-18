@@ -1,6 +1,8 @@
 import { ClienteRepository } from '../../domain/ports/cliente.repository';
 import { Cliente } from '../../domain/models/cliente.model';
 import { err, ok, Result } from '../../shared/result';
+import { Inject, Injectable } from '@nestjs/common';
+import { CLIENTE_REPOSITORY } from 'src/common/tokens';
 
 interface Input {
     nombre: string;
@@ -8,9 +10,12 @@ interface Input {
     telefono: string;
     direccion: string
 }
-
+@Injectable()
 export class CrearClienteUseCase {
-    constructor(private readonly clienteRepository: ClienteRepository) { }
+    constructor(
+        @Inject(CLIENTE_REPOSITORY)
+        private readonly clienteRepository: ClienteRepository
+    ) { }
 
     async execute(input: Input): Promise<Result<Cliente, Error>> {
         try {

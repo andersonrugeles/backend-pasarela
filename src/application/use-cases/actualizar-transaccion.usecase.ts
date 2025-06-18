@@ -5,6 +5,8 @@ import { Result, ok, err } from '../../shared/result';
 import { EntregaRepository } from '../../../src/domain/ports/entrega.repository';
 import { randomUUID } from 'crypto';
 import { Entrega } from '../../../src/domain/models/entrega.model';
+import { Inject, Injectable } from '@nestjs/common';
+import { COMPRA_REPOSITORY, ENTREGA_REPOSITORY, PRODUCTO_REPOSITORY } from 'src/common/tokens';
 
 interface ActualizarTransaccionDTO {
   id: string;
@@ -14,11 +16,14 @@ interface ActualizarTransaccionDTO {
   total?: number;
   cantidad?: number;
 }
-
+@Injectable()
 export class ActualizarTransaccionUseCase {
   constructor(
+    @Inject(COMPRA_REPOSITORY)
     private compraRepo: CompraRepository,
+    @Inject(PRODUCTO_REPOSITORY)
     private productoRepo: ProductoRepository,
+    @Inject(ENTREGA_REPOSITORY)
     private entregaRepository: EntregaRepository
   ) { }
 

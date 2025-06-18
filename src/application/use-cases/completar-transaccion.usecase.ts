@@ -3,6 +3,8 @@ import { Compra, CompraEstado } from '../../domain/models/compra-status.enum';
 import { CompraRepository } from '../../domain/ports/compra.repository';
 import { Result, ok, err } from '../../shared/result';
 import { CrearClienteUseCase } from './crear-cliente.usecase';
+import { Inject, Injectable } from '@nestjs/common';
+import { CLIENTE_REPOSITORY, COMPRA_REPOSITORY, PRODUCTO_REPOSITORY } from 'src/common/tokens';
 
 interface CrearTransaccionDTO {
   productoId: string;
@@ -13,10 +15,13 @@ interface CrearTransaccionDTO {
   email:string
   total: number;
 }
-
+@Injectable()
 export class CrearTransaccionUseCase {
-  constructor(private compraRepo: CompraRepository,
+  constructor(
+    @Inject(PRODUCTO_REPOSITORY)
     private readonly productoRepository: ProductoRepository,
+    @Inject(COMPRA_REPOSITORY)
+    private compraRepo: CompraRepository,
     private readonly crearCliente: CrearClienteUseCase
   ) { }
 
